@@ -48,14 +48,15 @@ var app = new Vue ({
         }
       })
       .then((result) => {
-        console.log(result.data);
         this.risultatiMovie = result.data.results;
+        console.log(this.risultatiMovie);
 
         // in case poster path is null we attach another img
         this.risultatiMovie.forEach((item,i) => {
+
           if (item[i].poster_path == null) {
             item[i].poster_path = this.coverImg;
-            console.log(item[i].poster_path);
+            
           }
         });
 
