@@ -33,7 +33,13 @@ var app = new Vue ({
     imgSize: 'w342',
     imgPath: '',
     risultatiTv: '',
-    coverImg: '/wwemzKWzjKYJFfCeiB57q3r4Bcm.png'
+    coverImg: '/wwemzKWzjKYJFfCeiB57q3r4Bcm.png',
+    menu: [
+      'Film',
+      'Serie tv',
+      'La mia lista'
+    ],
+    casella: ''
 
   },
   methods: {
@@ -79,28 +85,36 @@ var app = new Vue ({
         this.risultatiTv = result.data.results;
         console.log(this.risultatiTv);
 
-        // // in case poster path is null we attach another img
-        // this.risultatiTv.forEach((item) => {
-        //
-        //   if (item.poster_path == null) {
-        //     item.poster_path = this.coverImg;
-        //     console.log(item.poster_path);
-        //
-        //   }
-        // });
-        swapImg(this.risultatiTv);
+        // in case poster path is null we attach another img
+        this.risultatiTv.forEach((item) => {
+
+          if (item.poster_path == null) {
+            item.poster_path = this.coverImg;
+            console.log(item.poster_path);
+
+          }
+        });
 
       })
       .catch((error) => alert('this API (tv) does not work'));
 
     },
-    swapImg(array,poster){
-      // in case poster path is null we attach another img
-      array.forEach((item) => {
-        if (item.poster_path == null) {
-          item.poster_path = this.coverImg;
-        }
-      });
+    filtra(index){
+      this.casella = this.menu[index];
+      console.log(this.casella);
+
+      if (this.casella == 'film'){
+        this.risultatiTv = '';
+        console.log(this.risultatiTv);
+      }
     }
+    // swapImg(array){ // se è null poster_path metti logo netflix
+    //   // in case poster path is null we attach another img
+    //   array.forEach((item) => {
+    //     if (item.poster_path == null) {
+    //       item.poster_path = this.coverImg;
+    //     }
+    //   });
+    // }
   }
 });

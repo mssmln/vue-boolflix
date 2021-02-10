@@ -13,15 +13,27 @@
 <body>
   <div id="app">
     <header>
+      <!-- logo -->
       <div class="logo">
         <img src="img\logo.png" alt="">
       </div>
+      <!-- /logo -->
+
+      <!-- menu -->
+      <div class="menu">
+        <ul >
+          <li v-for="(voci,indice) in menu" @click="filtra(indice)" v-model="casella">
+            {{ voci }}
+          </li>
+        </ul>
+      </div>
+      <!-- /menu -->
+
+
+
       <!-- search zone -->
       <div class="">
         <input type="text" @keyup.enter="retrieveData" v-model="query" value="">
-        <button type="button" name="button">
-          search
-        </button>
       </div>
       <!-- /search zone -->
 
