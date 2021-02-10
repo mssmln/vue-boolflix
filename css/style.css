@@ -7,11 +7,29 @@
 header{
   height: 70px;
   width: 100vw;
-  background-color: black;
+  background-color: #0E0E0E;
+}
+
+main{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: #141414;
 }
 
 .riquadro{
-  height: 140px;
-  width: 70px;
+  /* height: 140px;
+  width: 70px; */
   background-color: red;
+  position: relative;
+}
+
+.riquadro:hover{
+  cursor: pointer;
+  opacity: 0.2;
+}
+
+.riquadro h2{
+  position: absolute;
+  top: 0;
 }

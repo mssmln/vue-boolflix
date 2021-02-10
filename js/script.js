@@ -28,13 +28,17 @@ var app = new Vue ({
     apiKey: 'a6f281f5844e3986db3b0d8a66d93e94',
     query: '',
     lang: 'en',
-    risultatiRicerca: '',
+    risultatiMovie: '',
     url: 'https://image.tmdb.org/t/p/',
-    imgSize: 'w342/',
-    imgPath: ''
+    imgSize: 'w342',
+    imgPath: '',
+    risultatiTv: '',
+    coverImg: 'https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png'
+
   },
   methods: {
     retrieveData(){
+      // per i film
       axios
       .get("https://api.themoviedb.org/3/search/movie", {
         params: {
@@ -45,13 +49,37 @@ var app = new Vue ({
       })
       .then((result) => {
         console.log(result.data);
-        this.risultatiRicerca = result.data.results;
-        this.imgPath = this.url + this.imgSize + result.data.results.poster_path;
-        console.log(this.imgPath);
-        console.log(result.data.results.poster_path);
-        console.log(this.risultatiRicerca.poster_path);
+        this.risultatiMovie = result.data.results;
+
+        // in case poster path is null we attach another img
+        this.risultatiMovie.forEach((item,i) => {
+          if (item[i].poster_path == null) {
+            item[i].poster_path = this.coverImg;
+            console.log(item[i].poster_path);
+          }
+        });
+
       })
       .catch((error) => alert('this API does not work'));
+
+
+      // per le serie tv
+      axios
+      .get("https://api.themoviedb.org/3/search/tv", {
+        params: {
+          api_key: this.apiKey,
+          query: this.query,
+          language: this.lang
+        }
+      })
+      .then((result) => {
+        console.log(result.data);
+        this.risultatiTv = result.data.results;
+        console.log(this.risultatiTv);
+
+      })
+      .catch((error) => alert('this API does not work'));
+
     }
   }
 });

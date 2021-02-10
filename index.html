@@ -26,22 +26,66 @@
 
     <main>
       <!-- div di formattazione -->
-      <div class="riquadro" v-for="risultato in risultatiRicerca">
-        <img src="" alt="">
+      <!-- <div class="riquadro" >
         <h2>
-          {{ risultato.title }}
         </h2>
         <h3>
-          {{ risultato.original_title}}
         </h3>
         <h5>
-          {{ risultato.original_language }}
         </h5>
         <h6>
-          {{ risultato.vote_average }}
         </h6>
       </div>
-      <!-- {{ risultatiRicerca }} -->
+      <div class="riquadro"></div>
+      <div class="riquadro"></div>
+      <div class="riquadro"></div>
+      <div class="riquadro"></div>
+      <div class="riquadro"></div>
+      <div class="riquadro"></div>
+      <div class="riquadro"></div>
+      <div class="riquadro"></div> -->
+      <!-- /div di formattazione -->
+
+      <!-- film -->
+      <div class="riquadro" v-for="movie in risultatiMovie">
+        <img :src="url + imgSize + movie.poster_path" :alt="movie.original_title">
+        <h2>
+          {{ movie.title }}
+        </h2>
+        <h3>
+          {{ movie.original_title}}
+        </h3>
+        <h5>
+          {{ movie.original_language }}
+        </h5>
+        <h6>
+          {{ movie.vote_average }}
+        </h6>
+      </div>
+      <!-- /film -->
+
+
+
+      <!-- serie tv -->
+      <div class="riquadro" v-for="tv in risultatiTv">
+        <img :src="url + imgSize + tv.poster_path" :alt="tv.original_name">
+        <h2>
+          {{ tv.name }}
+        </h2>
+        <h3>
+          {{ tv.original_name}}
+        </h3>
+        <h5>
+          {{ tv.original_language }}
+        </h5>
+        <h6>
+          {{ tv.vote_average }}
+        </h6>
+      </div>
+      <!-- /serie tv -->
+
+
+
 
     </main>
   </div>
