@@ -88,7 +88,7 @@ var app = new Vue ({
         //
         //   }
         // });
-        swapImg(this.risultatiTv,result.data.results.poster_path);
+        swapImg(this.risultatiTv);
 
       })
       .catch((error) => alert('this API (tv) does not work'));
@@ -96,9 +96,9 @@ var app = new Vue ({
     },
     swapImg(array,poster){
       // in case poster path is null we attach another img
-      this.array.forEach((item) => {
-        if (item.poster == null) {
-          item.poster = this.coverImg;
+      array.forEach((item) => {
+        if (item.poster_path == null) {
+          item.poster_path = this.coverImg;
         }
       });
     }
