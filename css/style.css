@@ -5,9 +5,19 @@
 }
 
 header{
-  height: 70px;
+  height: 100px;
   width: 100vw;
   background-color: #0E0E0E;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.logo img{
+  width: 200px;
+  padding: 20px;
 }
 
 main{
@@ -18,8 +28,7 @@ main{
 }
 
 .riquadro{
-  /* height: 140px;
-  width: 70px; */
+  margin-top: 100px;
   background-color: red;
   position: relative;
 }
@@ -29,7 +38,7 @@ main{
   opacity: 0.2;
 }
 
-.riquadro h2{
+.riquadro .data{
   position: absolute;
   top: 0;
 }

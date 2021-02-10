@@ -33,7 +33,7 @@ var app = new Vue ({
     imgSize: 'w342',
     imgPath: '',
     risultatiTv: '',
-    coverImg: 'https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png'
+    coverImg: '/wwemzKWzjKYJFfCeiB57q3r4Bcm.png'
 
   },
   methods: {
@@ -52,16 +52,17 @@ var app = new Vue ({
         console.log(this.risultatiMovie);
 
         // in case poster path is null we attach another img
-        this.risultatiMovie.forEach((item,i) => {
+        this.risultatiMovie.forEach((item) => {
 
-          if (item[i].poster_path == null) {
-            item[i].poster_path = this.coverImg;
-            
+          if (item.poster_path == null) {
+            item.poster_path = this.coverImg;
+            console.log(item.poster_path);
+
           }
         });
 
       })
-      .catch((error) => alert('this API does not work'));
+      .catch((error) => alert('this API (movie) does not work'));
 
 
       // per le serie tv
@@ -78,9 +79,28 @@ var app = new Vue ({
         this.risultatiTv = result.data.results;
         console.log(this.risultatiTv);
 
-      })
-      .catch((error) => alert('this API does not work'));
+        // // in case poster path is null we attach another img
+        // this.risultatiTv.forEach((item) => {
+        //
+        //   if (item.poster_path == null) {
+        //     item.poster_path = this.coverImg;
+        //     console.log(item.poster_path);
+        //
+        //   }
+        // });
+        swapImg(this.risultatiTv,result.data.results.poster_path);
 
+      })
+      .catch((error) => alert('this API (tv) does not work'));
+
+    },
+    swapImg(array,poster){
+      // in case poster path is null we attach another img
+      this.array.forEach((item) => {
+        if (item.poster == null) {
+          item.poster = this.coverImg;
+        }
+      });
     }
   }
 });
