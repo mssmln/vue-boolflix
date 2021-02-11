@@ -43,7 +43,7 @@
 
     <main>
       <!-- film -->
-      <div class="riquadro" v-for="movie in risultatiMovie">
+      <div class="riquadro" v-for="(movie,indice) in risultatiMovie">
         <img :src="url + imgSize + movie.poster_path" :alt="movie.original_title">
         <div class="data">
           <h2>
@@ -58,7 +58,7 @@
             Lingua originale:
             {{ movie.original_language }}
             <span>
-              <img :src="getLanguageImg" alt="">
+              <img :src="getLanguageImg(movie.original_language,indice)" alt="">
             </span>
           </h5>
           <h6>
