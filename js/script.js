@@ -133,9 +133,10 @@ var app = new Vue ({
     stelleColorate(arg){
       return parseInt(arg / 2);
     },
-    getLanguageImg(language,index){
-      if (language.includes(this.flags[index])){
-        language = this.flags[index] + '.png';
+    getLanguageImg(language){
+      if (this.flags.includes(language)){
+        language = language + '.png';
+        console.log(language);
       }
     },
     // filtra(index){
