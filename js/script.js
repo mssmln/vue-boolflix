@@ -27,7 +27,7 @@ var app = new Vue ({
   data: {
     apiKey: 'a6f281f5844e3986db3b0d8a66d93e94',
     query: '',
-    lang: 'en',
+    lang: '',
     risultatiMovie: '',
     url: 'https://image.tmdb.org/t/p/',
     imgSize: 'w342',
@@ -39,8 +39,16 @@ var app = new Vue ({
       'Serie tv',
       'La mia lista'
     ],
-    casella: ''
+    casella: '',
+    flags: [
+      "en",
+      "it"
+    ],
+    lorem: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
+  },
+  mounted(){
+    console.log(this.flags);
   },
   methods: {
     retrieveData(){
@@ -50,7 +58,7 @@ var app = new Vue ({
         params: {
           api_key: this.apiKey,
           query: this.query,
-          language: this.lang
+          // language: this.lang
         }
       })
       .then((result) => {
@@ -66,6 +74,7 @@ var app = new Vue ({
 
           }
         });
+
 
       })
       .catch((error) => alert('this API (movie) does not work'));
@@ -95,9 +104,26 @@ var app = new Vue ({
           }
         });
 
+        // in case overview is ""
+        this.risultatiTv.forEach((item) => {
+          if (item.overview == ""){
+            item.overview = this.lorem;
+          }
+        });
+
       })
       .catch((error) => alert('this API (tv) does not work'));
 
+    },
+    stelleColorate(arg){
+      return parseInt(arg / 2);
+    },
+    getLanguageImg(){
+      if (this.risultatiMovie.original_language){
+        this.risultatiMovie.original_language = this.flags[0] + '.png';
+        console.log(this.risultatiMovie.original_language);
+        return this.risultatiMovie.original_language;
+      }
     },
     filtra(index){
       this.casella = this.menu[index];

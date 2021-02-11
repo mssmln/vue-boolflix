@@ -32,8 +32,8 @@
 
 
       <!-- search zone -->
-      <div class="">
-        <input type="text" @keyup.enter="retrieveData" v-model="query" value="">
+      <div class="input">
+        <input type="text" placeholder="search for sth" @keyup="retrieveData" v-model="query" value="">
       </div>
       <!-- /search zone -->
 
@@ -57,15 +57,24 @@
           <h5>
             Lingua originale:
             {{ movie.original_language }}
+            <span>
+              <img :src="getLanguageImg" alt="">
+            </span>
           </h5>
           <h6>
             Voto:
-            {{ movie.vote_average }}
+            <!-- {{ movie.vote_average }} -->
+            <span>
+              <!-- stelle colorate  -->
+              <i class="fas fa-star" v-for="i in stelleColorate(movie.vote_average)"></i>
+              <!-- stelle non colorate  -->
+              <i class="far fa-star" v-for="i in 5 - stelleColorate(movie.vote_average)"></i>
+            </span>
           </h6>
-          <!-- <p>
+          <p>
             Overview:
-
-          </p> -->
+            {{ movie.overview }}
+          </p>
         </div>
       </div>
       <!-- /film -->
@@ -75,18 +84,37 @@
       <!-- serie tv -->
       <div class="riquadro" v-for="tv in risultatiTv">
         <img :src="url + imgSize + tv.poster_path" :alt="tv.original_name">
-        <h2>
-          {{ tv.name }}
-        </h2>
-        <h3>
-          {{ tv.original_name}}
-        </h3>
-        <h5>
-          {{ tv.original_language }}
-        </h5>
-        <h6>
-          {{ tv.vote_average }}
-        </h6>
+        <div class="data">
+          <h2>
+            Titolo:
+            {{ tv.name }}
+          </h2>
+          <h3>
+            Titolo originale:
+            {{ tv.original_name}}
+          </h3>
+          <h5>
+            Lingua originale:
+            {{ tv.original_language }}
+            <span>
+              <img src="" alt="">
+            </span>
+          </h5>
+          <h6>
+            Voto:
+            <!-- {{ tv.vote_average }} -->
+            <span>
+              <!-- stelle colorate  -->
+              <i class="fas fa-star" v-for="i in stelleColorate(tv.vote_average)"></i>
+              <!-- stelle non colorate  -->
+              <i class="far fa-star" v-for="i in 5 - stelleColorate(tv.vote_average)"></i>
+            </span>
+          </h6>
+          <p>
+            Overview:
+            {{ tv.overview }}
+          </p>
+        </div>
       </div>
       <!-- /serie tv -->
 

@@ -1,3 +1,12 @@
+h2,
+h3,
+h5,
+h6,
+p{
+  color: pink;
+}
+
+
 *{
   margin: 0;
   padding: 0;
@@ -43,6 +52,14 @@ header{
   color: rgba(255, 255, 255);
 }
 
+.input input{
+  font-size: 16px;
+  margin-right: 30px;
+  padding: 5px;
+  border: none;
+  outline: none;
+}
+
 main{
   display: flex;
   justify-content: space-evenly;
@@ -52,8 +69,13 @@ main{
 
 .riquadro{
   margin-top: 100px;
+  margin-bottom: 20px;
   background-color: red;
   position: relative;
+}
+
+.riquadro img{
+
 }
 
 .riquadro:hover{
@@ -64,4 +86,13 @@ main{
 .riquadro .data{
   position: absolute;
   top: 0;
+  margin-top: 40px;
+  padding: 10px;
+}
+
+.data h2,
+.data h3,
+.data h5,
+.data h6{
+  margin-bottom: 10px;
 }
