@@ -136,7 +136,7 @@ var app = new Vue ({
     getLanguageImg(){
       if (this.risultatiMovie.original_language){
         this.risultatiMovie.original_language = this.flags[0] + '.png';
-        console.log(this.risultatiMovie.original_language);
+        
         return this.risultatiMovie.original_language;
       }
     },
