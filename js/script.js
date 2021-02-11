@@ -135,8 +135,7 @@ var app = new Vue ({
     },
     getLanguageImg(language){
       if (this.flags.includes(language)){
-        language = language + '.png';
-        console.log(language);
+        return language = language + '.png';
       }
     },
     // filtra(index){
