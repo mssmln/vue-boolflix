@@ -1,16 +1,12 @@
-h2,
-h3,
-h5,
-h6,
-p{
-  color: pink;
-}
-
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
+  height: 100vh;
+  background-color: #141414;
 }
 
 header{
@@ -64,35 +60,51 @@ main{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  background-color: #141414;
+  /* background-color: #141414; */
 }
 
 .riquadro{
   margin-top: 100px;
   margin-bottom: 20px;
+  height: 513px;
   background-color: red;
   position: relative;
 }
 
 .riquadro img{
-
+  height: 100%;
+  max-width: 342px;
+  min-width: 342px;
 }
 
 .riquadro:hover{
   cursor: pointer;
-  opacity: 0.2;
+  /* opacity: 0; */
 }
 
 .riquadro .data{
+  /* display: none; */
   position: absolute;
   top: 0;
   margin-top: 40px;
   padding: 10px;
+  max-width: 342px;
+
+}
+
+.riquadro:hover .data{
+  display: block;
+}
+
+.data i{
+  color: yellow;
 }
 
 .data h2,
 .data h3,
 .data h5,
-.data h6{
-  margin-bottom: 10px;
+.data h6,
+.data p{
+  margin: 0 0 10px 0;
+  color: white;
 }

@@ -53,66 +53,81 @@ var app = new Vue ({
   methods: {
     retrieveData(){
       // per i film
-      axios
-      .get("https://api.themoviedb.org/3/search/movie", {
-        params: {
-          api_key: this.apiKey,
-          query: this.query,
-          // language: this.lang
-        }
-      })
-      .then((result) => {
-        this.risultatiMovie = result.data.results;
-        console.log(this.risultatiMovie);
+      if (this.query.length > 0) {
+        axios
+        .get("https://api.themoviedb.org/3/search/movie", {
 
-        // in case poster path is null we attach another img
-        this.risultatiMovie.forEach((item) => {
-
-          if (item.poster_path == null) {
-            item.poster_path = this.coverImg;
-            console.log(item.poster_path);
-
+          params: {
+            api_key: this.apiKey,
+            query: this.query,
+            // language: this.lang
           }
-        });
+        })
+        .then((result) => {
+          this.risultatiMovie = result.data.results;
+          console.log(this.risultatiMovie);
 
 
-      })
-      .catch((error) => alert('this API (movie) does not work'));
+          // in case poster path is null we attach another img
+          this.risultatiMovie.forEach((item) => {
+            if (item.poster_path == null) {
+              item.poster_path = this.coverImg;
+              console.log(item.poster_path);
+            }
+          });
+
+          // in case overview is ""
+          this.risultatiMovie.forEach((item) => {
+            if (item.overview == ""){
+              item.overview = this.lorem;
+            }
+          });
+
+        })
+        .catch((error) => alert('this API (movie) does not work'));
+
+      } else if (this.query.length == 0){
+        this.risultatiMovie = '';
+      }
 
 
       // per le serie tv
-      axios
-      .get("https://api.themoviedb.org/3/search/tv", {
-        params: {
-          api_key: this.apiKey,
-          query: this.query,
-          language: this.lang
-        }
-      })
-      .then((result) => {
-        console.log(result.data);
-        this.risultatiTv = result.data.results;
-        console.log(this.risultatiTv);
-
-        // in case poster path is null we attach another img
-        this.risultatiTv.forEach((item) => {
-
-          if (item.poster_path == null) {
-            item.poster_path = this.coverImg;
-            console.log(item.poster_path);
-
+      if (this.query.length > 0){
+        axios
+        .get("https://api.themoviedb.org/3/search/tv", {
+          params: {
+            api_key: this.apiKey,
+            query: this.query,
+            // language: this.lang
           }
-        });
+        })
+        .then((result) => {
+          console.log(result.data);
+          this.risultatiTv = result.data.results;
+          console.log(this.risultatiTv);
 
-        // in case overview is ""
-        this.risultatiTv.forEach((item) => {
-          if (item.overview == ""){
-            item.overview = this.lorem;
-          }
-        });
+          // in case poster path is null we attach another img
+          this.risultatiTv.forEach((item) => {
+            if (item.poster_path == null) {
+              item.poster_path = this.coverImg;
+              console.log(item.poster_path);
 
-      })
-      .catch((error) => alert('this API (tv) does not work'));
+            }
+          });
+
+          // in case overview is ""
+          this.risultatiTv.forEach((item) => {
+            if (item.overview == ""){
+              item.overview = this.lorem;
+            }
+          });
+
+        })
+        .catch((error) => alert('this API (tv) does not work'));
+
+      } else if (this.query.length == 0){
+        this.risultatiTv = '';
+      }
 
     },
     stelleColorate(arg){
@@ -125,15 +140,19 @@ var app = new Vue ({
         return this.risultatiMovie.original_language;
       }
     },
-    filtra(index){
-      this.casella = this.menu[index];
-      console.log(this.casella);
-
-      if (this.casella == 'film'){
-        this.risultatiTv = '';
-        console.log(this.risultatiTv);
-      }
-    }
+    // filtra(index){
+    //   this.casella = this.menu[index];
+    //   console.log(this.casella);
+    //   while (true) {
+    //
+    //   }
+    //   if (this.casella == this.menu[0]){
+    //     this.risultatiTv = '';
+    //   } else if (this.casella == this.menu[1]){
+    //     this.risultatiMovie = '';
+    //   }
+    //
+    // }
     // swapImg(array){ // se è null poster_path metti logo netflix
     //   // in case poster path is null we attach another img
     //   array.forEach((item) => {
