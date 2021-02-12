@@ -15,16 +15,16 @@
     <header>
       <!-- logo -->
       <div class="logo">
-        <img src="img\logo.png" alt="">
+        <img src="img\logo.png">
       </div>
       <!-- /logo -->
 
       <!-- menu -->
       <div class="menu">
         <ul >
-          <li v-for="(voci,indice) in menu" @click="filtra(indice)" v-model="casella">
+          <!-- <li v-for="(voci,indice) in menu" @click="filtra(indice)" v-model="casella">
             {{ voci }}
-          </li>
+          </li> -->
         </ul>
       </div>
       <!-- /menu -->
@@ -33,36 +33,35 @@
 
       <!-- search zone -->
       <div class="input">
-        <input type="text" placeholder="search for sth" @keyup="retrieveData" v-model="query" value="">
+        <input type="text" placeholder="search for sth" @keyup="search" v-model="query" value="">
       </div>
       <!-- /search zone -->
-
-
     </header>
 
 
     <main>
-      <!-- film -->
-      <div class="riquadro" v-for="movie in risultatiMovie">
-        <img class="poster" :src="url + imgSize + movie.poster_path" :alt="movie.original_title">
+      <!-- film e serie tv -->
+      <div class="riquadro" v-for="movie in results">
+        <img class="poster" :src="getPoster(movie.poster_path)" :alt="movie.original_title" v-if="movie.poster_path">
+        <img class="poster" src="img/logo.png" :alt="movie.original_title" v-else>
         <div class="data">
           <h2>
             Titolo:
-            {{ movie.title }}
+            {{ movie.title || movie.name }}
           </h2>
           <h3>
             Titolo originale:
-            {{ movie.original_title}}
+            {{ movie.original_title || movie.original_name }}
           </h3>
           <h5>
             Lingua originale:
-            <img class="flag" :src="'img/' + getLanguageImg(movie.original_language) + '.png'" :alt="movie.original_language">
+            <!-- <img class="flag" :src="'img/' + getLanguageImg(movie.original_language) + '.png'" :alt="movie.original_language"> -->
           </h5>
           <h6>
             Voto:
             <span>
-              <i class="fas fa-star" v-for="i in stelleColorate(movie.vote_average)"></i>
-              <i class="far fa-star" v-for="i in 5 - stelleColorate(movie.vote_average)"></i>
+              <!-- <i class="fas fa-star" v-for="i in stelleColorate(movie.vote_average)"></i>
+              <i class="far fa-star" v-for="i in 5 - stelleColorate(movie.vote_average)"></i> -->
             </span>
           </h6>
         </div>
@@ -73,45 +72,7 @@
           </div>
         </div>
       </div>
-      <!-- /film -->
-
-
-
-      <!-- serie tv -->
-      <div class="riquadro" v-for="tv in risultatiTv">
-        <img class="poster" :src="url + imgSize + tv.poster_path" :alt="tv.original_name">
-        <div class="data">
-          <h2>
-            Titolo:
-            {{ tv.name }}
-          </h2>
-          <h3>
-            Titolo originale:
-            {{ tv.original_name}}
-          </h3>
-          <h5>
-            Lingua originale:
-            <img class="flag" :src="'img/' + getLanguageImg(tv.original_language) + '.png'" :alt="tv.original_language">
-          </h5>
-          <h6>
-            Voto:
-            <span>
-              <i class="fas fa-star" v-for="i in stelleColorate(tv.vote_average)"></i>
-              <i class="far fa-star" v-for="i in 5 - stelleColorate(tv.vote_average)"></i>
-            </span>
-          </h6>
-          <div class="plot">
-            <div>
-              Plot:
-              {{ tv.overview }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /serie tv -->
-
-
-
+      <!-- /film e serie tv -->
 
     </main>
   </div>
