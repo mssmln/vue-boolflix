@@ -60,14 +60,14 @@ main{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-top: 100px;
   /* background-color: #141414; */
 }
 
 .riquadro{
-  margin-top: 100px;
   margin-bottom: 20px;
   height: 513px;
-  background-color: red;
+  background-color: rgb(124, 124, 124);
   position: relative;
 }
 
@@ -77,9 +77,12 @@ main{
   min-width: 342px;
 }
 
+.riquadro:hover .poster{
+  opacity: 0;
+}
+
 .riquadro:hover{
   cursor: pointer;
-  /* opacity: 0; */
 }
 
 .riquadro .data{
@@ -89,10 +92,24 @@ main{
   margin-top: 40px;
   padding: 10px;
   max-width: 342px;
-
 }
 
-.riquadro:hover .data{
+.riquadro .plot{
+  /* display: none; */
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  max-width: 342px;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.plot div{
+  margin-bottom: 10px;
+}
+
+.riquadro:hover .data,
+.riquadro:hover .plot{
   display: block;
 }
 
@@ -103,8 +120,13 @@ main{
 .data h2,
 .data h3,
 .data h5,
-.data h6,
-.data p{
+.data h6{
   margin: 0 0 10px 0;
   color: white;
+}
+
+img.flag{
+  width: 20px !important;
+  max-width: 20px;
+  min-width: 20px;
 }

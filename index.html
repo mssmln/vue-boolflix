@@ -44,7 +44,7 @@
     <main>
       <!-- film -->
       <div class="riquadro" v-for="movie in risultatiMovie">
-        <img :src="url + imgSize + movie.poster_path" :alt="movie.original_title">
+        <img class="poster" :src="url + imgSize + movie.poster_path" :alt="movie.original_title">
         <div class="data">
           <h2>
             Titolo:
@@ -56,25 +56,21 @@
           </h3>
           <h5>
             Lingua originale:
-            {{ movie.original_language }}
-            <span>
-              <img :src="'img\' + getLanguageImg(movie.original_language)" alt="">
-            </span>
+            <img class="flag" :src="'img/' + getLanguageImg(movie.original_language) + '.png'" :alt="movie.original_language">
           </h5>
           <h6>
             Voto:
-            <!-- {{ movie.vote_average }} -->
             <span>
-              <!-- stelle colorate  -->
               <i class="fas fa-star" v-for="i in stelleColorate(movie.vote_average)"></i>
-              <!-- stelle non colorate  -->
               <i class="far fa-star" v-for="i in 5 - stelleColorate(movie.vote_average)"></i>
             </span>
           </h6>
-          <p>
-            Overview:
+        </div>
+        <div class="plot">
+          <div>
+            Plot:
             {{ movie.overview }}
-          </p>
+          </div>
         </div>
       </div>
       <!-- /film -->
@@ -83,7 +79,7 @@
 
       <!-- serie tv -->
       <div class="riquadro" v-for="tv in risultatiTv">
-        <img :src="url + imgSize + tv.poster_path" :alt="tv.original_name">
+        <img class="poster" :src="url + imgSize + tv.poster_path" :alt="tv.original_name">
         <div class="data">
           <h2>
             Titolo:
@@ -95,25 +91,21 @@
           </h3>
           <h5>
             Lingua originale:
-            {{ tv.original_language }}
-            <span>
-              <img src="" alt="">
-            </span>
+            <img class="flag" :src="'img/' + getLanguageImg(tv.original_language) + '.png'" :alt="tv.original_language">
           </h5>
           <h6>
             Voto:
-            <!-- {{ tv.vote_average }} -->
             <span>
-              <!-- stelle colorate  -->
               <i class="fas fa-star" v-for="i in stelleColorate(tv.vote_average)"></i>
-              <!-- stelle non colorate  -->
               <i class="far fa-star" v-for="i in 5 - stelleColorate(tv.vote_average)"></i>
             </span>
           </h6>
-          <p>
-            Overview:
-            {{ tv.overview }}
-          </p>
+          <div class="plot">
+            <div>
+              Plot:
+              {{ tv.overview }}
+            </div>
+          </div>
         </div>
       </div>
       <!-- /serie tv -->
