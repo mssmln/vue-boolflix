@@ -60,37 +60,9 @@ var app = new Vue ({
           this.risultati = result.data.results;
 
 
-          // // in case poster path is null we attach another img
-          // this.risultatiMovie.forEach((item) => {
-          //   if (item.poster_path == null) {
-          //     item.poster_path = this.coverImg;
-          //     // console.log(item.poster_path);
-          //   }
-          // });
-
-
-          // // in case overview is ""
-          // this.risultatiMovie.forEach((item) => {
-          //   if (item.overview == ""){
-          //     item.overview = this.lorem;
-          //   }
-          // });
-
-
-          // // retrieve genres from another API
-          // axios
-          // .get("https://api.themoviedb.org/3/genre/movie/list", {
-          //   params: {
-          //     api_key: this.apiKey
-          //   }
-          // })
-          // .then((results) => {
-          //   console.log(result.data.results);
-          // })
-          // .catch((error) => alert('this API (movie list) does not work'));
-
-
-
+          // retrieve cast
+          getCast(this.risultati);
+          console.log(this.risultati);
         })
         .catch((error) => alert('this API (movie) does not work'));
       } else if (this.query.length == 0){
@@ -112,23 +84,6 @@ var app = new Vue ({
         .then((result) => {
           this.risultati = this.risultati.concat(result.data.results);
           console.log(this.risultati);
-
-
-          // // in case poster path is null we attach another img
-          // this.risultatiTv.forEach((item) => {
-          //   if (item.poster_path == null) {
-          //     item.poster_path = this.coverImg;
-          //     // console.log(item.poster_path);
-          //   }
-          // });
-
-
-          // // in case overview is ""
-          // this.risultatiTv.forEach((item) => {
-          //   if (item.overview == ""){
-          //     item.overview = this.lorem;
-          //   }
-          // });
         })
         .catch((error) => alert('this API (tv) does not work'));
       } else if (this.query.length == 0){
@@ -144,26 +99,12 @@ var app = new Vue ({
         return language;
       }
     },
-    // filtra(index){
-    //   this.casella = this.menu[index];
-    //   console.log(this.casella);
-    //   while (true) {
-    //
-    //   }
-    //   if (this.casella == this.menu[0]){
-    //     this.risultatiTv = '';
-    //   } else if (this.casella == this.menu[1]){
-    //     this.risultatiMovie = '';
-    //   }
-    //
-    // }
-    // swapImg(array){ // se è null poster_path metti logo netflix
-    //   // in case poster path is null we attach another img
-    //   array.forEach((item) => {
-    //     if (item.poster_path == null) {
-    //       item.poster_path = this.coverImg;
-    //     }
-    //   });
-    // }
+    getCast(array){
+      const property = 'cast';
+      for (let k in array){
+        Vue.set(array,property,10);
+        this.$forceUpdate();
+      }
+    }
   }
 });
