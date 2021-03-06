@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+  <title>Boolflix</title>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <!-- logo -->
+      <div class="logo">
+        <img src="img\logo.png">
+      </div>
+      <!-- /logo -->
+
+      <!-- menu -->
+      <div class="menu">
+        <ul >
+          <!-- <li v-for="(voci,indice) in menu" @click="filtra(indice)" v-model="casella">
+            {{ voci }}
+          </li> -->
+        </ul>
+      </div>
+      <!-- /menu -->
+
+
+
+      <!-- search zone -->
+      <div class="input">
+        <input type="text" placeholder="search for sth" @keyup="search" v-model="query" value="">
+      </div>
+      <!-- /search zone -->
+    </header>
+
+
+    <main>
+      <!-- film e serie tv -->
+      <div class="riquadro" v-for="movie in results">
+        <img class="poster" :src="getPoster(movie.poster_path)" :alt="movie.original_title" v-if="movie.poster_path">
+        <img class="poster" src="img/logo.png" :alt="movie.original_title" v-else>
+        <div class="data">
+          <h2>
+            Titolo:
+            {{ movie.title || movie.name }}
+          </h2>
+          <h3>
+            Titolo originale:
+            {{ movie.original_title || movie.original_name }}
+          </h3>
+          <h5>
+            Lingua originale:
+            <!-- <img class="flag" :src="'img/' + getLanguageImg(movie.original_language) + '.png'" :alt="movie.original_language"> -->
+          </h5>
+          <h6>
+            Voto:
+            <span>
+              <!-- <i class="fas fa-star" v-for="i in stelleColorate(movie.vote_average)"></i>
+              <i class="far fa-star" v-for="i in 5 - stelleColorate(movie.vote_average)"></i> -->
+            </span>
+          </h6>
+        </div>
+        <div class="plot">
+          <div>
+            Plot:
+            {{ movie.overview }}
+          </div>
+        </div>
+      </div>
+      <!-- /film e serie tv -->
+
+    </main>
+  </div>
+  <script src="js/script.js" charset="utf-8"></script>
+</body>
+</html>

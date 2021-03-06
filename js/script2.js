@@ -53,16 +53,11 @@ var app = new Vue ({
         .get("https://api.themoviedb.org/3/search/movie", {
           params: {
             api_key: this.apiKey,
-            query: this.query,
+            query: this.query
           }
         })
         .then((result) => {
           this.risultati = result.data.results;
-
-
-          // retrieve cast
-          getCast(this.risultati);
-          console.log(this.risultati);
         })
         .catch((error) => alert('this API (movie) does not work'));
       } else if (this.query.length == 0){
@@ -98,13 +93,7 @@ var app = new Vue ({
       if (this.flags.includes(language)){
         return language;
       }
-    },
-    getCast(array){
-      const property = 'cast';
-      for (let k in array){
-        Vue.set(array,property,10);
-        this.$forceUpdate();
-      }
     }
   }
+  
 });
